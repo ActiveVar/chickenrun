@@ -7,7 +7,12 @@ function jump() {
     setTimeout(function(){
         character.classList.remove("animate");
     },500);
+
 }
+
+document.addEventListener("keydown", function (event) {
+    jump();
+});
 
 var checkDead = setInterval(function(){
     var characterTop = 
