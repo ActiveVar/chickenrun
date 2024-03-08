@@ -1,29 +1,29 @@
 * {
     padding: 0%;
     margin: 0%;
+    overflow: hidden;
 }
-
-ul {
-    list-style-type: none;
-    background-color: white;
-    border-radius: 5px;
-    font-weight: 600;
-    margin: 0;
-    padding: 0;
-  }
 
 body {
     margin: 0;
     padding: 0;
     height: 100vh;
-    display: grid;
+    /* display: grid; */
+    
     place-items: center;
     background: #2D2E36;
     font-family: 'Poppins';
 }
 
+.nav-img {
+    margin: 1%;
+    width: 25px;
+    height: 25px;
+}
+
 .game {
-    width: 500px;
+    margin: 0% auto;
+    width: 400px;
     height: 200px;
     border: 1px solid black;
 }
@@ -31,14 +31,14 @@ body {
 #character {
     width: 50px;
     height: 50px;
-    background-image: url(chickenhero.png);
+    background-image: url(images/chickenhero.png);
     background-size: 50px 50px;
     position: relative;
     top: 150px;
     
 }
 
-.animate{
+.animate {
     animation: jump 500ms;
 }
 
@@ -52,14 +52,33 @@ body {
 #block {
     width: 20px;
     height: 20px;
-    background-image: url(fire.png);
+    background-image: url(images/fire.png);
     background-size: 20px 20px;
-    
     position: relative;
     top: 130px;
     left: 480px;
     animation: block 2s infinite linear;
 }
+
+#score {
+    color: white;
+    margin-left: 80%;
+    
+}
+
+/* #ground {
+    width: 1500px;
+    height: 24px;
+    background-image: url(images/ground.png);
+    position: relative;
+    bottom: 50;
+    animation: ground 5s infinite linear;
+}
+
+@keyframes ground{
+    0%{left:100%;}
+    100%{left:-500px;}
+} */
 
 @keyframes block{
     0%{left:480px;}

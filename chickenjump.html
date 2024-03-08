@@ -1,28 +1,31 @@
 <!DOCTYPE html>
-<html lang="en" onclick="jump()">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChickenJump</title>
     <link href="chickenjump.css" rel="stylesheet">
+    <link rel="icon" href="images/chickenhero.png" type="image/png">
+    <title>ChickenJump</title>
+    
 </head>
 <body>
     <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-            </ul>
-        </nav>
+        <div>
+            <a href="index.html">
+            <img class="nav-img" src="images/chickenhero.png">
+            </a>
+        </div>
+        
     </header>
-    <div class="game">
-        
-        
+
+    <div class="game" onclick="jump()">
         <div id="character"></div>
         <div id="block"></div>
-        
+        <div id="score"></div>
+        <div id="ground"></div>
     </div>
    
     
 </body>
-<script src="script.js"></script>
+<script src="chickenjump.js"></script>
 </html>
