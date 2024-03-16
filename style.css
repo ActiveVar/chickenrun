@@ -16,8 +16,12 @@ body {
 }
 
 .games {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
     background-color: #232323;
-    max-width: 100%;
+    margin: 1%;
 }
 
 .rekt-jump {
@@ -35,6 +39,24 @@ body {
 }
 
 .cjimg {
+    max-width: 100%;
+}
+
+.chicken-stories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    text-align: center;
+    background-color: rgb(171, 171, 171);
+    padding: 2%;
+    max-width: 100%;
+    margin: 0% 10%;
+    border-radius: 5px;
+    border: 2px solid black;
+}
+
+.csimg {
     max-width: 100%;
 }
 
@@ -58,4 +80,15 @@ a {
     color: white;
     font-weight: bold;
     text-decoration: none;
+}
+
+footer {
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5%;
+    margin-bottom: 2%;
+    margin-left: 10%;
+    margin-right: 10%;
+    
 }
