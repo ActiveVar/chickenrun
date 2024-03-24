@@ -1,0 +1,87 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #232323;
+    font-family: 'Poppins';
+}
+
+.nav-img {
+    margin: 2%;
+    width: 35px;
+    height: 35px;
+}
+
+.stories {
+    /* display: flexbox; */
+
+    /* display: grid;
+    grid-template-columns: repeat(2, auto); */
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    
+    /* flex-wrap: row wrap;
+    justify-content: center; */
+    /* gap: 1rem; */
+    background-color: #232323;
+    margin: 2%;
+    
+}
+
+.storyone {
+    /* display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    text-align: center;
+    background-color: ;
+    padding: 2%;
+    max-width: 100%;
+    margin: 0% 10%; */
+    border-radius: 5px;
+    border: 2px solid white;
+    margin-bottom: 5%;
+}
+
+.storytwo {
+    border-radius: 5px;
+    border: 2px solid white;
+    margin-bottom: 5%;
+}
+
+/* .content {
+    max-width: 100%;
+} */
+
+button {
+    padding: 1% 2%;
+    border: 2px solid black;
+    border-radius: 55px;
+    background-color: #0155fb;
+    font-size: 1.2rem;
+}
+
+.play-btn:hover {
+    transform: scale(1.03);
+}
+
+a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+footer {
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5%;
+    margin-bottom: 2%;
+    margin-left: 10%;
+    margin-right: 10%;
+    
+}
