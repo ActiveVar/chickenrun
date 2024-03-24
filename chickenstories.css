@@ -32,6 +32,11 @@ body {
     
 }
 
+iframe {
+    /* aspect-ratio: 16/9; */
+    max-width: 100%;
+}
+
 .storyone {
     /* display: flex;
     flex-wrap: wrap;
