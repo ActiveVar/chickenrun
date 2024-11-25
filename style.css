@@ -16,64 +16,65 @@ body {
 }
 
 .games {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-    background-color: #232323;
-    margin: 1%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
 }
 
-.rekt-jump {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-    text-align: center;
-    background-color: rgb(171, 171, 171);
-    padding: 2%;
-    max-width: 100%;
-    margin: 0% 10%;
-    border-radius: 5px;
-    border: 2px solid white;
+.game-card {
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
 }
 
-.cjimg {
-    max-width: 100%;
+.game-card:hover {
+    transform: translateY(-5px);
 }
 
-.chicken-stories {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-    text-align: center;
-    background-color: rgb(171, 171, 171);
-    padding: 2%;
-    max-width: 100%;
-    margin: 0% 10%;
-    border-radius: 5px;
-    border: 2px solid white;
+.game-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
 }
 
-.csimg {
-    max-width: 100%;
+.content {
+    padding: 1.5rem;
 }
 
 .description {
-    font-size: 1.1rem;
+    margin-bottom: 1rem;
 }
 
-button {
-    padding: 1% 2%;
-    border: 2px solid black;
-    border-radius: 55px;
-    background-color: #0155fb;
-    font-size: 1.2rem;
+.play-btn {
+    display: block;
+    width: 100%;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 0.5rem;
+    background: #007bff;
+    transition: background 0.3s ease;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
 }
 
 .play-btn:hover {
-    transform: scale(1.03);
+    background: #0056b3;
+}
+
+@media (max-width: 768px) {
+    .games {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0 1rem;
+    }
 }
 
 a {
