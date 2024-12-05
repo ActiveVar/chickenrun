@@ -1,2 +1,2 @@
 # chickenrun
- fun with chickens
+ fun with chickens at: https://chickenomics.xyz/
