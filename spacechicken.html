@@ -86,20 +86,16 @@
         const scoreElement = document.getElementById('score');
         const gameOverElement = document.getElementById('gameOver');
         const finalScoreElement = document.getElementById('finalScore');
-
         // Load player sprite
         const playerSprite = new Image();
         playerSprite.src = 'images/space-chicken.png';
-
         // Set canvas size
         function resizeCanvas() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         }
-
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
-
         // Game objects
         const player = {
             x: 50,
@@ -108,14 +104,12 @@
             height: 64,
             speed: 5
         };
-
         let obstacles = [];
         let collectibles = [];
         let score = 0;
         let gameSpeed = 2;
         let isGameOver = false;
         let starField = [];
-
         // Create initial star field
         function createStars() {
             for (let i = 0; i < 200; i++) {
@@ -127,9 +121,7 @@
                 });
             }
         }
-
         createStars();
-
         function drawStars() {
             ctx.fillStyle = 'white';
             starField.forEach(star => {
@@ -145,62 +137,28 @@
                 }
             });
         }
-
         function gameLoop() {
             if (isGameOver) return;
-
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
             drawStars();
             movePlayer();
             drawPlayer();
-
             if (Math.random() < 0.02) generateObstacle();
             if (Math.random() < 0.01) generateCollectible();
             moveAndDrawObjects();
-
             checkCollisions();
-
             scoreElement.textContent = `Score: ${score}`;
             gameSpeed += 0.001;
-
             requestAnimationFrame(gameLoop);
         }
-
         function movePlayer() {
             if (keys.ArrowUp && player.y > 0) player.y -= player.speed;
             if (keys.ArrowDown && player.y < canvas.height - player.height) player.y += player.speed;
         }
-
-        // Add touch controls
-        function handleTouchStart(evt) {
-            const firstTouch = evt.touches[0];
-            touchStartY = firstTouch.clientY;
-        }
-
-        function handleTouchMove(evt) {
-            if (!touchStartY) return;
-
-            const touchMoveY = evt.touches[0].clientY;
-            const touchDiffY = touchStartY - touchMoveY;
-
-            if (touchDiffY > 0 && player.y > 0) {
-                player.y -= player.speed;
-            } else if (touchDiffY < 0 && player.y < canvas.height - player.height) {
-                player.y += player.speed;
-            }
-
-            touchStartY = null; // Reset after handling
-        }
-
-        let touchStartY = null;
-        window.addEventListener('touchstart', handleTouchStart, false);
-        window.addEventListener('touchmove', handleTouchMove, false);
-
         function drawPlayer() {
             ctx.drawImage(playerSprite, player.x, player.y, player.width, player.height);
         }
-
         function generateObstacle() {
             obstacles.push({
                 x: canvas.width,
@@ -210,7 +168,6 @@
                 color: '#ff0000'
             });
         }
-
         function generateCollectible() {
             collectibles.push({
                 x: canvas.width,
@@ -220,7 +177,6 @@
                 rotation: 0
             });
         }
-
         function moveAndDrawObjects() {
             obstacles = obstacles.filter(obj => {
                 obj.x -= gameSpeed;
@@ -237,7 +193,6 @@
                     0, 0, Math.PI * 2
                 );
                 ctx.fill();
-
                 // UFO Dome
                 ctx.fillStyle = '#C4E1FF';  // Dome color
                 ctx.beginPath();
@@ -248,7 +203,6 @@
                     Math.PI, 0
                 );
                 ctx.fill();
-
                 // UFO Lights
                 const lightColors = ['#FF0', '#0F0', '#F00'];
                 for(let i = 0; i < 3; i++) {
@@ -262,30 +216,25 @@
                     );
                     ctx.fill();
                 }
-
                 // Optional: Add glow effect
                 ctx.shadowBlur = 10;
                 ctx.shadowColor = '#C4E1FF';
                 
                 return obj.x + obj.width > 0;
             });
-
             collectibles = collectibles.filter(obj => {
                 obj.x -= gameSpeed;
                 obj.rotation += 0.05; // Slower rotation for better pixel art visibility
-
                 // Save the current context state
                 ctx.save();
                 
                 // Move to coin's position
                 ctx.translate(obj.x + obj.width/2, obj.y + obj.height/2);
                 ctx.rotate(obj.rotation);
-
                 // Draw Bitcoin in pixel art style
                 // Main coin body
                 ctx.fillStyle = '#F7931A'; // Bitcoin orange
                 ctx.fillRect(-10, -10, 20, 20);
-
                 // Inner B symbol (simplified pixel version)
                 ctx.fillStyle = '#FFFFFF';
                 // Vertical line of B
@@ -295,22 +244,17 @@
                 ctx.fillRect(-1, -2, 4, 3);
                 // Bottom curve of B
                 ctx.fillRect(-1, 3, 4, 3);
-
                 // Add pixel art shine (2 small squares)
                 ctx.fillStyle = '#FFC04C';
                 ctx.fillRect(-7, -7, 2, 2);
                 ctx.fillRect(-6, -6, 2, 2);
-
                 // Restore the context state
                 ctx.restore();
-
                 return obj.x + obj.width > 0;
             });
         
-
             // Reset shadow effect for other drawings
             ctx.shadowBlur = 0;
-
             collectibles = collectibles.filter(obj => {
                 obj.x -= gameSpeed;
                 ctx.fillStyle = obj.color;
@@ -324,7 +268,6 @@
                 return obj.x + obj.width > 0;
             });
         }
-
         // Simplified collection effect
         function createCollectionEffect(x, y) {
             ctx.save();
@@ -340,7 +283,6 @@
             }
             ctx.restore();
         }
-
         // Adjust obstacle generation for better UFO proportions
         function generateObstacle() {
             obstacles.push({
@@ -351,14 +293,12 @@
                 color: '#ff0000' // Keep for reference though we're not using it directly
             });
         }
-
         function checkCollisions() {
             obstacles.forEach(obj => {
                 if (collision(player, obj)) {
                     gameOver();
                 }
             });
-
             collectibles = collectibles.filter(obj => {
                 if (collision(player, obj)) {
                     score += 10;
@@ -367,20 +307,17 @@
                 return true;
             });
         }
-
         function collision(a, b) {
             return a.x < b.x + b.width &&
                    a.x + a.width > b.x &&
                    a.y < b.y + b.height &&
                    a.y + a.height > b.y;
         }
-
         function gameOver() {
             isGameOver = true;
             finalScoreElement.textContent = score;
             gameOverElement.style.display = 'block';
         }
-
         function restartGame() {
             score = 0;
             gameSpeed = 2;
@@ -393,11 +330,9 @@
             createStars();
             gameLoop();
         }
-
         const keys = {};
         window.addEventListener('keydown', e => keys[e.code] = true);
         window.addEventListener('keyup', e => keys[e.code] = false);
-
         // Start the game when the sprite is loaded
         playerSprite.onload = () => {
             gameLoop();
