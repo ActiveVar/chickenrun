@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NFBCMRCQY9"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-NFBCMRCQY9');
-    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Space Chicken Adventure</title>
@@ -21,6 +12,8 @@
         }
         canvas { 
             display: block; 
+            width: 100vw;
+            height: 100vh;
             background: linear-gradient(to bottom, #1a0f2e 0%, #4b1f44 50%, #c1666b 100%);
         }
         #score { 
@@ -98,7 +91,7 @@
 
         // Load player sprite
         const playerSprite = new Image();
-        playerSprite.src = 'images/spacechick.png';
+        playerSprite.src = 'images/space-chicken.png';
 
         // Set canvas size
         function resizeCanvas() {
@@ -180,6 +173,31 @@
             if (keys.ArrowUp && player.y > 0) player.y -= player.speed;
             if (keys.ArrowDown && player.y < canvas.height - player.height) player.y += player.speed;
         }
+
+        // Add touch controls
+        function handleTouchStart(evt) {
+            const firstTouch = evt.touches[0];
+            touchStartY = firstTouch.clientY;
+        }
+
+        function handleTouchMove(evt) {
+            if (!touchStartY) return;
+
+            const touchMoveY = evt.touches[0].clientY;
+            const touchDiffY = touchStartY - touchMoveY;
+
+            if (touchDiffY > 0 && player.y > 0) {
+                player.y -= player.speed;
+            } else if (touchDiffY < 0 && player.y < canvas.height - player.height) {
+                player.y += player.speed;
+            }
+
+            touchStartY = null; // Reset after handling
+        }
+
+        let touchStartY = null;
+        window.addEventListener('touchstart', handleTouchStart, false);
+        window.addEventListener('touchmove', handleTouchMove, false);
 
         function drawPlayer() {
             ctx.drawImage(playerSprite, player.x, player.y, player.width, player.height);
